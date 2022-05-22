@@ -1,0 +1,14 @@
+SELECT
+users.id, 
+first_name,
+last_name 
+FROM users 
+WHERE id = (SELECT user_id FROM orders WHERE status_id = 1 LIMIT 1);
+
+SELECT
+photo.id,
+photo.url,
+photo.good_id
+FROM photo
+WHERE id =
+(SELECT main_photo_id FROM goods WHERE photo.good_id = goods.id);

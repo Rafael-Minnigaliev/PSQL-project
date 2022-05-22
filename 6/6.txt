@@ -1,0 +1,21 @@
+SELECT
+first_name,
+last_name,
+goods.name,
+goods.price,
+cart.count
+FROM orders
+JOIN users ON orders.user_id = users.id
+JOIN cart ON orders.id = cart.order_id
+JOIN goods ON cart.goods_id = goods.id
+WHERE orders.status_id = 1;
+
+SELECT 
+first_name,
+last_name,
+inn,
+shops.name,
+shops.created_at
+FROM users
+JOIN shops ON users.id = shops.owner_id
+WHERE shops.created_at > NOW() - interval '1 month';
