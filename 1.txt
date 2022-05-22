@@ -6,15 +6,22 @@ CREATE TABLE users (
 	phone VARCHAR(20) UNIQUE,
 	address VARCHAR(300),
 	photo_url VARCHAR(300) UNIQUE,
-	inn VARCHAR(20) DEFAULT 0,
-	is_sellers BOOLEAN,
 	created_at TIMESTAMP
 );
 
+CREATE TABLE sellers (
+	id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	email VARCHAR(200) NOT NULL UNIQUE,
+	phone VARCHAR(20) UNIQUE,
+	inn VARCHAR(20) NOT NULL UNIQUE,
+	created_at TIMESTAMP
+);
 
 CREATE TABLE shops (
 	id SERIAL PRIMARY KEY,
-	name VARCHAR(120) NOT NULL UNIQUE,
+	name VARCHAR(120) NOT NULL,
 	description TEXT NOT NULL,
 	photo_url VARCHAR(300) UNIQUE,
 	owner_id INT NOT NULL,
@@ -35,7 +42,7 @@ CREATE TABLE messages (
 	body TEXT,
 	is_delivered BOOLEAN,
 	is_read BOOLEAN,
-	created_at TIMESTAMP
+	cretaed_at TIMESTAMP
 );
 
 CREATE TABLE orders (
@@ -55,7 +62,7 @@ CREATE TABLE cart (
 	user_id INT NOT NULL,
 	goods_id INT NOT NULL,
 	count INT DEFAULT 1,
-	order_id INT DEFAULT NULL,
+	order_id INT DEFAULT 0,
 	status INT DEFAULT 0,
 	created_at TIMESTAMP
 );
